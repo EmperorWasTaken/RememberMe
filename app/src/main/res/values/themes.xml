@@ -30,4 +30,14 @@
     <style name="Theme.RememberMe.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.RememberMe.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Splash" parent="Theme.MaterialComponents.Light">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+
+        //For full screen activity
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
 </resources>
