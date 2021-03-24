@@ -2,15 +2,32 @@
     <!-- Base application theme. -->
     <style name="Theme.RememberMe" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">#434145</item>
+        <item name="colorPrimaryVariant">#434145</item>
+        <item name="colorOnPrimary">#434145</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">#DA032E</item>
+        <item name="colorSecondaryVariant">#DA032E</item>
+        <item name="colorOnSecondary">#434145</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.RememberMe.NoActionBar">
+        <item name="colorPrimary">#434145</item>
+        <item name="colorPrimaryVariant">#434145</item>
+        <item name="colorOnPrimary">#434145</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">#DA032E</item>
+        <item name="colorSecondaryVariant">#DA032E</item>
+        <item name="colorOnSecondary">#434145</item>
+        <item name="background">@drawable/grad_gray</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.RememberMe.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.RememberMe.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
