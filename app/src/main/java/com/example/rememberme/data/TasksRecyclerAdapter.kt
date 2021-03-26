@@ -10,7 +10,6 @@ class TasksRecyclerAdapter(private var tasks:List<Task>, private val onTaskClick
     class ViewHolder(val binding:TaskLayoutBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(task: Task, onTaskClicked:(Task) -> Unit){
             binding.titleTask.text = task.title
-            binding.contentTask.text = task.content
 
             binding.taskCard.setOnClickListener {
                 onTaskClicked(task)
