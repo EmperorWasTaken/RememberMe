@@ -44,7 +44,7 @@ class LoginActivity : AppCompatActivity() {
         val userPassword = passwordInput.text.toString().trim()
 
         when {
-            userEmail.isEmpty() -> Toast.makeText(this, "Oops, forgot you email)", Toast.LENGTH_SHORT).show()
+            userEmail.isEmpty() -> Toast.makeText(this, "Oops, forgot you email", Toast.LENGTH_SHORT).show()
             userPassword.isEmpty() -> Toast.makeText(this, "Oops, forgot your password? You can press 'Forgot Password' if you did", Toast.LENGTH_SHORT).show()
             else -> {
                 auth.signInWithEmailAndPassword(userEmail, userPassword)

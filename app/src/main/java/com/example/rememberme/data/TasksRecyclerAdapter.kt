@@ -5,12 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rememberme.databinding.TaskLayoutBinding
 
-class TasksRecyclerAdapter(private val tasks:MutableList<Task>): RecyclerView.Adapter<TasksRecyclerAdapter.ViewHolder>() {
+class TasksRecyclerAdapter(private var tasks:List<Task>, private val onTaskClicked:(Task) -> Unit): RecyclerView.Adapter<TasksRecyclerAdapter.ViewHolder>() {
 
     class ViewHolder(val binding:TaskLayoutBinding):RecyclerView.ViewHolder(binding.root){
-        fun bind(task: Task){
+        fun bind(task: Task, onTaskClicked:(Task) -> Unit){
             binding.title.text = task.title
             binding.content.text = task.content
+
+            binding.taskCard.setOnClickListener {
+                onTaskClicked(task)
+            }
         }
     }
 
@@ -19,7 +23,7 @@ class TasksRecyclerAdapter(private val tasks:MutableList<Task>): RecyclerView.Ad
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val task = tasks[position]
-        holder.bind(task)
+        holder.bind(task, onTaskClicked)
 
     }
 
@@ -28,8 +32,8 @@ class TasksRecyclerAdapter(private val tasks:MutableList<Task>): RecyclerView.Ad
     }
 
     public fun updateTaskList(newTasks:List<Task>){
-        tasks.clear()
-        tasks.addAll(newTasks)
+        tasks = newTasks
+        notifyDataSetChanged()
     }
 
 }

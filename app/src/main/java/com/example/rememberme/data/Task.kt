@@ -1,3 +1,7 @@
 package com.example.rememberme.data
 
-data class Task(val title:String, val content:String)
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class Task(val title:String, val content:String): Parcelable

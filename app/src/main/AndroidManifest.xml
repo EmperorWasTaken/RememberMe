@@ -12,7 +12,8 @@
         android:roundIcon="@drawable/plannerlogo"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".data.TaskDetailsActivity"></activity>
+        <activity android:name=".LoginActivity" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/Splash">
