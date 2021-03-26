@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/Theme.RememberMe.NoActionBar"
+    android:background="@drawable/grad_gray"
     tools:context=".data.TaskDetailsActivity">
 
 
