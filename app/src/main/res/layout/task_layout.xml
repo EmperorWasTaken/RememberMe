@@ -18,10 +18,7 @@
         app:cardCornerRadius="10dp"
         app:cardElevation="1dp"
         app:cardUseCompatPadding="true"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingTop="8dp"
-        android:focusable="true"
+        android:focusable="false"
         tools:context=".MainActivity">
 
 
@@ -43,6 +40,7 @@
                 android:layout_alignParentTop="true"
                 android:textColor="@color/white"
                 android:textSize="17sp"
+                android:textAlignment="center"
                 tools:text="Title" />
 
             <ImageButton
