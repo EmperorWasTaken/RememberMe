@@ -3,15 +3,16 @@ package com.example.rememberme.data
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.rememberme.databinding.TaskLayoutBinding
+import com.example.rememberme.databinding.TaskListLayoutBinding
 
-class TasksRecyclerAdapter(private var tasks:List<Task>, private val onTaskClicked:(Task) -> Unit): RecyclerView.Adapter<TasksRecyclerAdapter.ViewHolder>() {
+class TasksRecyclerAdapter(private var tasks:MutableList<Task>, private val onTaskClicked:(Task) -> Unit): RecyclerView.Adapter<TasksRecyclerAdapter.ViewHolder>() {
 
-    class ViewHolder(val binding:TaskLayoutBinding):RecyclerView.ViewHolder(binding.root){
+    class ViewHolder(val binding:TaskListLayoutBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(task: Task, onTaskClicked:(Task) -> Unit){
-            binding.titleTask.text = task.title
+            binding.titleList.text = task.title
 
-            binding.taskCard.setOnClickListener {
+
+            binding.listCard.setOnClickListener {
                 onTaskClicked(task)
             }
         }
@@ -27,10 +28,10 @@ class TasksRecyclerAdapter(private var tasks:List<Task>, private val onTaskClick
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(TaskLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return ViewHolder(TaskListLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
-    public fun updateTaskList(newTasks:List<Task>){
+    public fun updateTaskList(newTasks:MutableList<Task>){
         tasks = newTasks
         notifyDataSetChanged()
     }

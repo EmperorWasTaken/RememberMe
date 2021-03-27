@@ -53,13 +53,15 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_margin="10dp"
-                android:layout_alignRight="@id/titleList"/>
+                android:layout_alignRight="@id/titleList"
+                android:contentDescription="Delete list button" />
 
             <androidx.core.widget.ContentLoadingProgressBar
                 android:id="@+id/listProgress"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:layout_alignParentBottom="true"/>
+                android:layout_alignParentBottom="true"
+                android:progressTint="#CF0023"/>
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.taskListing.layoutManager = LinearLayoutManager(this)
-        binding.taskListing.adapter = TasksRecyclerAdapter(emptyList<Task>(), this::onTaskClicked)
+        binding.taskListing.adapter = TasksRecyclerAdapter(emptyList<List>(), this::onListClicked)
 
         TaskDepositoryManager.instance.onTasks = {
             (binding.taskListing.adapter as TasksRecyclerAdapter).updateTaskList(it)
@@ -47,12 +47,12 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun addTask(title: String, content: String){
-        val task = Task(title, content)
+    private fun addList(title: String){
+        val task = Task(title, false)
         TaskDepositoryManager.instance.addTask(task)
     }
 
-    private fun onTaskClicked(task: Task): Unit {
+    private fun onListClicked(task: Task): Unit {
 
         TaskHolder.ClickedTask = task
 

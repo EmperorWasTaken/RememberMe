@@ -2,19 +2,19 @@ package com.example.rememberme.data
 
 class TaskDepositoryManager {
 
-    private lateinit var taskList:MutableList<Task>
+    private lateinit var tasks:MutableList<Task>
 
-    var onTasks:((List<Task>)->Unit)? = null
+    var onTasks:((MutableList<Task>)->Unit)? = null
     var onTasksUpdate:((task:Task)->Unit)? = null
 
     fun loadTasks(){
-        taskList = mutableListOf(
-            Task("Store", "Eggs"),
-            Task("Store", "Bread"),
-            Task("Christmas", "Lights")
+        tasks = mutableListOf(
+            Task("Eggs", false),
+            Task("Bacon", true),
+            Task("Beans", false)
         )
 
-        onTasks?.invoke(taskList)
+        onTasks?.invoke(tasks)
     }
 
     fun updateTasks(task:Task){
@@ -24,8 +24,8 @@ class TaskDepositoryManager {
     }
 
     fun addTask(task:Task){
-        taskList.add(task)
-        onTasks?.invoke(taskList)
+        tasks.add(task)
+        onTasks?.invoke(tasks)
     }
 
     companion object{

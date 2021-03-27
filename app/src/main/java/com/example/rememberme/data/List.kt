@@ -1,4 +1,7 @@
 package com.example.rememberme.data
 
-class List {
-}
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class List(val title:String): Parcelable

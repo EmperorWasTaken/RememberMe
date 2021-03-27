@@ -35,7 +35,6 @@ class TaskDetailsActivity : AppCompatActivity() {
         }
 
         binding.title.text = task.title
-        binding.content.text = task.content
 
     }
 }
