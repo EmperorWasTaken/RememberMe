@@ -1,22 +1,25 @@
-package com.example.rememberme.data
+package com.example.rememberme.tasks
 
 import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rememberme.EXTRA_TASK_INFO
 import com.example.rememberme.TaskHolder
+import com.example.rememberme.data.Task
 import com.example.rememberme.databinding.ActivityTaskDetailsBinding
+import com.example.rememberme.databinding.ListTaskLayoutBinding
 
 class TaskDetailsActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityTaskDetailsBinding
-    private lateinit var task:Task
+    private lateinit var binding: ListTaskLayoutBinding
+    private lateinit var task: Task
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityTaskDetailsBinding.inflate(layoutInflater)
+        binding = ListTaskLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         //val receivedTasks = intent.getParcelableExtra<Task>(EXTRA_TASK_INFO)
@@ -34,8 +37,8 @@ class TaskDetailsActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.title.text = task.title
-        binding.content.text = task.content
+
+
 
     }
 }

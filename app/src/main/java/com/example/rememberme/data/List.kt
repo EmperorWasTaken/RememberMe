@@ -4,4 +4,4 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Task(val taskTitle:String, val onChecked:Boolean): Parcelable
+data class TaskList(val listTitle:String, var tasks:MutableList<Task>): Parcelable
