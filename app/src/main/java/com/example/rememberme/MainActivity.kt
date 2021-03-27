@@ -4,11 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.rememberme.data.Task
-import com.example.rememberme.data.TaskDepositoryManager
-import com.example.rememberme.data.TaskDetailsActivity
-import com.example.rememberme.data.TasksRecyclerAdapter
+import com.example.rememberme.data.*
 import com.example.rememberme.databinding.ActivityMainBinding
+import com.example.rememberme.lists.TaskListDetailsActivity
+import com.example.rememberme.lists.TaskListsDepositoryManager
+import com.example.rememberme.lists.TaskListsRecyclerAdapter
+import kotlinx.android.synthetic.main.activity_task_details.*
 
 const val EXTRA_TASK_INFO: String = "com.example.rememberme.task.info"
 const val REQUEST_TASK_DETAILS:Int = 564567
@@ -16,6 +17,12 @@ const val REQUEST_TASK_DETAILS:Int = 564567
 class TaskHolder {
     companion object{
         var ClickedTask:Task? = null
+    }
+}
+
+class TaskListHolder {
+    companion object{
+        var ClickedList:TaskList? = null
     }
 }
 
@@ -29,16 +36,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.taskListing.layoutManager = LinearLayoutManager(this)
-        binding.taskListing.adapter = TasksRecyclerAdapter(emptyList<Task>(), this::onTaskClicked)
+        binding.taskListing.adapter = TaskListsRecyclerAdapter(emptyList<TaskList>(), this::onTaskListClicked)
 
-        TaskDepositoryManager.instance.onTasks = {
-            (binding.taskListing.adapter as TasksRecyclerAdapter).updateTaskList(it)
+        TaskListsDepositoryManager.instance.onTaskList = {
+            (binding.taskListing.adapter as TaskListsRecyclerAdapter).updateTaskList(it)
         }
 
-        TaskDepositoryManager.instance.loadTasks()
+        TaskListsDepositoryManager.instance.loadTaskLists()
 
         binding.taskListAddButton.setOnClickListener {
-            
 
         }
 
@@ -47,17 +53,17 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun addTask(title: String, content: String){
-        val task = Task(title, content)
-        TaskDepositoryManager.instance.addTask(task)
+    private fun addTaskList(title: String, tasks:MutableList<Task>){
+        val taskCollection = TaskList(title, tasks)
+        TaskListsDepositoryManager.instance.addTaskList(taskCollection)
     }
 
-    private fun onTaskClicked(task: Task): Unit {
+    private fun onTaskListClicked(taskList: TaskList): Unit {
 
-        TaskHolder.ClickedTask = task
+        TaskListHolder.ClickedList = taskList
 
-        val intent = Intent(this, TaskDetailsActivity::class.java).apply{
-            putExtra(EXTRA_TASK_INFO, task)
+        val intent = Intent(this, TaskListDetailsActivity::class.java).apply{
+            putExtra(EXTRA_TASK_INFO, taskList)
         }
 
         startActivity(intent)
