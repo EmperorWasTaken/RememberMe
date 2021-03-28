@@ -16,11 +16,22 @@ class TaskRecyclerAdapter (private var tasks:List<Task>) : RecyclerView.Adapter<
     class ViewHolder(val binding: ActivityTaskDetailsBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(task: Task){
             binding.titleTask.text = task.taskTitle
+            binding.taskCheckBox.isChecked = task.onChecked
 
             binding.taskCard.radius = 0F
 
             binding.deleteTaskButton.setOnClickListener{
                 TaskListsDepositoryManager.instance.removeTaskInList(TaskListHolder.ClickedList, task)
+            }
+
+            binding.taskCheckBox.setOnClickListener{
+
+                val progress = !task.onChecked
+                binding.taskCheckBox.isChecked = progress
+
+                TaskListsDepositoryManager.instance.updateTaskInListProgress(task, progress)
+
+
             }
 
         }
