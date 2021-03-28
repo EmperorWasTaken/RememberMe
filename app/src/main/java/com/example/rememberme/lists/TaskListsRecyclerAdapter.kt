@@ -15,7 +15,7 @@ class TaskListsRecyclerAdapter(private var taskLists:List<TaskList>, private val
         fun bind(taskList: TaskList, onTaskListClicked:(TaskList) -> Unit){
             binding.titleTaskList.text = taskList.listTitle
 
-            binding.taskCard.setOnClickListener {
+            binding.listCard.setOnClickListener {
                 onTaskListClicked(taskList)
             }
         }

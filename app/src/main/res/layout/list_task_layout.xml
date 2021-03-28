@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:background="@drawable/grad_gray"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:background="@drawable/grad_gray">
+
+    <LinearLayout
+        android:id="@+id/LinearTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingTop="25dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -30,32 +37,47 @@
                 tools:text="Title" />
         </RelativeLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:background="@drawable/grad_gray"
-        android:id="@+id/scrollView"
-        android:paddingTop="50dp"
+        <androidx.core.widget.NestedScrollView
+            android:paddingTop="50dp"
+            android:background="@drawable/grad_gray"
+            app:layout_constraintBottom_toBottomOf="@+id/LinearTitle"
+            android:id="@+id/scrollViewTasks"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/taskList"
+                    android:layout_width="match_parent"
+                    android:layout_height="603dp" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical"
+        android:gravity="bottom"
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <LinearLayout
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/taskAddButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:clickable="true"
+            android:layout_margin="16dp"
+            android:backgroundTint="#CF0023"
+            android:layout_gravity="bottom|end"
+            app:srcCompat="@drawable/ic_task_add"
+            android:elevation="2dp"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/taskList"
-                android:layout_width="match_parent"
-                android:layout_height="725dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
 
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
