@@ -20,6 +20,7 @@ class AddNewTaskActivity : AppCompatActivity() {
         binding.newTaskTitleButton.setOnClickListener{
             newTask()
         }
+
     }
 
     private fun newTask() {

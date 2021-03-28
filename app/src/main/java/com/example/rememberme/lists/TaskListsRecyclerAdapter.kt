@@ -20,6 +20,10 @@ class TaskListsRecyclerAdapter(private var taskLists:List<TaskList>, private val
             binding.listCard.setOnClickListener {
                 onTaskListClicked(taskList)
             }
+
+            binding.deleteListButton.setOnClickListener {
+                TaskListsDepositoryManager.instance.removeTaskList(taskList)
+            }
         }
     }
 
