@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RememberMe</string>
+    <string name="app_name">RememberMe.</string>
     <string name="add">Add</string>
     <string name="newTitleList">Add New Title List</string>
     <string name="newTitleTask">Add New Task</string>

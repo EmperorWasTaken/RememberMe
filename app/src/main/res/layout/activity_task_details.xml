@@ -45,7 +45,7 @@
                 tools:text="Title" />
 
             <ImageButton
-                android:id="@+id/deleteListButton"
+                android:id="@+id/deleteTaskButton"
                 app:srcCompat="@drawable/ic_delete"
                 android:layout_width="30dp"
                 android:layout_height="30dp"

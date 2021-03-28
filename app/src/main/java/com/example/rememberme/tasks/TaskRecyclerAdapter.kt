@@ -3,9 +3,11 @@ package com.example.rememberme.tasks
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rememberme.TaskListHolder
 import com.example.rememberme.data.Task
 import com.example.rememberme.data.TaskList
 import com.example.rememberme.databinding.ActivityTaskDetailsBinding
+import com.example.rememberme.lists.TaskListsDepositoryManager
 import com.example.rememberme.lists.TaskListsRecyclerAdapter
 
 class TaskRecyclerAdapter (private var tasks:List<Task>) : RecyclerView.Adapter<TaskRecyclerAdapter.ViewHolder>() {
@@ -16,6 +18,10 @@ class TaskRecyclerAdapter (private var tasks:List<Task>) : RecyclerView.Adapter<
             binding.titleTask.text = task.taskTitle
 
             binding.taskCard.radius = 0F
+
+            binding.deleteTaskButton.setOnClickListener{
+                TaskListsDepositoryManager.instance.removeTaskInList(TaskListHolder.ClickedList, task)
+            }
 
         }
     }

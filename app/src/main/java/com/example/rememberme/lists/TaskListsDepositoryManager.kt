@@ -14,20 +14,7 @@ class TaskListsDepositoryManager {
     var onTask:((List<Task>) -> Unit)? = null
 
     fun loadTaskLists(){
-        listCollection = mutableListOf(
-
-            TaskList(listTitle = "Julegaver", tasks = mutableListOf(
-                Task("Rosalie", true),
-                Task("Lester", false)
-            )),
-
-            TaskList(listTitle = "Gjøremål", tasks = mutableListOf(
-                Task("Støvsuge", false),
-                Task("Oppvasken", true),
-                Task("Handle mat", false)
-            ))
-
-        )
+        listCollection = mutableListOf()
 
         onTaskList?.invoke(listCollection)
     }
@@ -41,6 +28,14 @@ class TaskListsDepositoryManager {
         onTaskList?.invoke(listCollection)
     }
 
+    fun removeTaskList(taskList: TaskList?){
+
+        listCollection.remove(taskList)
+        loadTaskLists()
+        updateChange()
+    }
+
+
     fun createTaskInList(taskList:TaskList?, task: Task){
 
         if (taskList != null){
@@ -51,6 +46,15 @@ class TaskListsDepositoryManager {
 
         }
 
+    }
+
+    fun removeTaskInList(taskList: TaskList?, task: Task){
+
+        if(taskList != null){
+            taskList.tasks.remove(task)
+            updateTasks(taskList.tasks)
+            updateChange()
+        }
     }
 
     fun updateTasks(tasks: List<Task>){
