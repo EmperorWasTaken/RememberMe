@@ -12,7 +12,9 @@
         android:roundIcon="@drawable/plannerlogo"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".lists.TaskListDetailsActivity"></activity>
+        <activity android:name=".lists.AddNewListActivity"></activity>
+        <activity android:name=".tasks.AddNewTaskActivity" />
+        <activity android:name=".lists.TaskListDetailsActivity" />
         <activity android:name=".tasks.TaskDetailsActivity" />
         <activity android:name=".LoginActivity" />
         <activity

@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rememberme.data.*
 import com.example.rememberme.databinding.ActivityMainBinding
+import com.example.rememberme.lists.AddNewListActivity
 import com.example.rememberme.lists.TaskListDetailsActivity
 import com.example.rememberme.lists.TaskListsDepositoryManager
 import com.example.rememberme.lists.TaskListsRecyclerAdapter
@@ -46,6 +47,8 @@ class MainActivity : AppCompatActivity() {
 
         binding.taskListAddButton.setOnClickListener {
 
+            addTaskList()
+
         }
 
         // Later we can update the list with this
@@ -53,9 +56,11 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun addTaskList(title: String, tasks:MutableList<Task>){
-        val taskCollection = TaskList(title, tasks)
-        TaskListsDepositoryManager.instance.addTaskList(taskCollection)
+    private fun addTaskList(/*title: String, tasks:MutableList<Task>*/){
+
+        startActivity(Intent(applicationContext, AddNewListActivity::class.java))
+        /*val taskCollection = TaskList(title, tasks)
+        TaskListsDepositoryManager.instance.addTaskList(taskCollection)*/
     }
 
     private fun onTaskListClicked(taskList: TaskList): Unit {

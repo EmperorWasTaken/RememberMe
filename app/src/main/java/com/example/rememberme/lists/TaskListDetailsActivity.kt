@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rememberme.EXTRA_TASK_INFO
 import com.example.rememberme.TaskListHolder
 import com.example.rememberme.data.TaskList
-import com.example.rememberme.databinding.ActivityTaskListDetailsBinding
 import com.example.rememberme.databinding.ListTaskLayoutBinding
+import com.example.rememberme.tasks.AddNewTaskActivity
 import com.example.rememberme.tasks.TaskRecyclerAdapter
 
 class TaskListDetailsActivity : AppCompatActivity() {
@@ -35,7 +35,6 @@ class TaskListDetailsActivity : AppCompatActivity() {
 
             finish()
         }
-
         binding.titleList.text = taskList.listTitle
         binding.taskList.layoutManager = LinearLayoutManager(this)
         binding.taskList.adapter = TaskRecyclerAdapter(taskList.tasks)
@@ -44,7 +43,15 @@ class TaskListDetailsActivity : AppCompatActivity() {
             (binding.taskList.adapter as TaskRecyclerAdapter).updateTask(it)
         }
 
+        binding.taskAddButton.setOnClickListener(){
+            newTaskActivity()
+        }
+
         //TaskListsDepositoryManager.instance.loadTaskLists()
 
+    }
+
+    private fun newTaskActivity(){
+        startActivity(Intent(applicationContext, AddNewTaskActivity::class.java))
     }
 }
