@@ -32,6 +32,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
@@ -52,6 +54,7 @@
             android:layout_margin="16dp"
             android:layout_gravity="bottom|end"
             app:srcCompat="@drawable/ic_task_add"
+            android:contentDescription="Add a new list"
             android:elevation="2dp"/>
 
     </LinearLayout>

@@ -15,6 +15,8 @@ class TaskRecyclerAdapter (private var tasks:List<Task>) : RecyclerView.Adapter<
         fun bind(task: Task){
             binding.titleTask.text = task.taskTitle
 
+            binding.taskCard.radius = 0F
+
         }
     }
 

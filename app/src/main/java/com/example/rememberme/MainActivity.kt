@@ -3,6 +3,7 @@ package com.example.rememberme
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rememberme.data.*
 import com.example.rememberme.databinding.ActivityMainBinding
@@ -38,6 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.taskListing.layoutManager = LinearLayoutManager(this)
         binding.taskListing.adapter = TaskListsRecyclerAdapter(emptyList<TaskList>(), this::onTaskListClicked)
+
 
         TaskListsDepositoryManager.instance.onTaskList = {
             (binding.taskListing.adapter as TaskListsRecyclerAdapter).updateTaskList(it)
