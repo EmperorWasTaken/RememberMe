@@ -1,5 +1,6 @@
 package com.example.rememberme.lists
 
+import com.example.rememberme.TaskListHolder
 import com.example.rememberme.data.Task
 import com.example.rememberme.data.TaskList
 
@@ -55,6 +56,11 @@ class TaskListsDepositoryManager {
             updateTasks(taskList.tasks)
             updateChange()
         }
+    }
+
+    fun updateTaskInListProgress(task: Task, progress: Boolean){
+        task.onChecked = progress
+        TaskListHolder.ClickedList?.let {updateTasks(it.tasks)}
     }
 
     fun updateTasks(tasks: List<Task>){
