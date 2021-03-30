@@ -22,8 +22,6 @@ class AddNewListActivity : AppCompatActivity() {
         binding.newListTitleButton.setOnClickListener {
             newList()
         }
-
-
     }
 
     private fun newList() {
@@ -36,7 +34,7 @@ class AddNewListActivity : AppCompatActivity() {
             val taskList = TaskList(listTitle, mutableList, progress)
 
             TaskListsDepositoryManager.instance.addTaskList(taskList)
-            TaskListsDepositoryManager.instance.updateTaskLists(taskList)
+            //TaskListsDepositoryManager.instance.updateTaskLists(taskList)
 
             finish()
         }

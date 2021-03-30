@@ -1,5 +1,7 @@
 package com.example.rememberme.lists
 
+import android.util.Log
+import com.example.rememberme.FirebaseManager
 import com.example.rememberme.TaskListHolder
 import com.example.rememberme.data.Task
 import com.example.rememberme.data.TaskList
@@ -7,17 +9,25 @@ import com.example.rememberme.data.TaskList
 class TaskListsDepositoryManager {
 
     private lateinit var listCollection:MutableList<TaskList>
-
+    private lateinit var firebaseManager: FirebaseManager
 
     var onChange:((List<TaskList>) -> Unit)? = null
-    var onTaskList:((List<TaskList>) -> Unit)? = null
+    var onTaskList:((MutableList<TaskList>) -> Unit)? = null
     var onTaskListUpdate:((taskList: TaskList) -> Unit)? = null
     var onTask:((List<Task>) -> Unit)? = null
 
-    fun loadTaskLists(){
+    init {
         listCollection = mutableListOf()
+        firebaseManager = FirebaseManager(listCollection)
+    }
 
-        onTaskList?.invoke(listCollection)
+    fun loadTaskLists(){
+        firebaseManager.retrieveData("Lists").addOnCompleteListener {
+            if (it.isComplete) {
+                Log.println(Log.VERBOSE, "TaskListDepositoryManager", listCollection.toString())
+                onTaskList?.invoke(listCollection)
+            }
+        }
     }
 
     fun updateTaskLists(taskList:TaskList){
@@ -26,6 +36,8 @@ class TaskListsDepositoryManager {
 
     fun addTaskList(taskList: TaskList){
         listCollection.add(taskList)
+        firebaseManager.putData("Lists", listCollection)
+
         onTaskList?.invoke(listCollection)
     }
 
