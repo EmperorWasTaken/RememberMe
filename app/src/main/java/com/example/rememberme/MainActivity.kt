@@ -27,6 +27,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    private val taskListsDepositoryManager = TaskListsDepositoryManager()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -35,13 +38,12 @@ class MainActivity : AppCompatActivity() {
         binding.taskListing.layoutManager = LinearLayoutManager(this)
         binding.taskListing.adapter = TaskListsRecyclerAdapter(emptyList<TaskList>(), this::onTaskListClicked)
 
+        taskListsDepositoryManager.loadTaskLists()
 
-        TaskListsDepositoryManager.instance.onTaskList = {
+
+        taskListsDepositoryManager.onTaskList = {
             (binding.taskListing.adapter as TaskListsRecyclerAdapter).updateTaskList(it)
         }
-
-        TaskListsDepositoryManager.instance.loadTaskLists()
-
 
         binding.taskListAddButton.setOnClickListener {
 
@@ -49,6 +51,11 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        taskListsDepositoryManager.loadTaskLists()
     }
 
     private fun addTaskList(){
