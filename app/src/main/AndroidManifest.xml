@@ -12,12 +12,13 @@
         android:roundIcon="@drawable/plannerlogo"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".userActivities.ForgotPasswordActivity"></activity>
+        <activity android:name=".userActivities.RegisterActivity" />
         <activity android:name=".lists.AddNewListActivity" />
         <activity android:name=".tasks.AddNewTaskActivity" />
         <activity android:name=".lists.TaskListDetailsActivity" />
         <activity android:name=".tasks.TaskDetailsActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".userActivities.LoginActivity" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/Splash">
