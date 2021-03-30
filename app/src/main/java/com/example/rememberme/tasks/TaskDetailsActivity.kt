@@ -7,10 +7,10 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rememberme.EXTRA_TASK_INFO
-import com.example.rememberme.TaskHolder
 import com.example.rememberme.data.Task
 import com.example.rememberme.databinding.ActivityTaskDetailsBinding
 import com.example.rememberme.databinding.ListTaskLayoutBinding
+import com.example.rememberme.lists.TaskHolder
 
 class TaskDetailsActivity : AppCompatActivity() {
 

@@ -10,17 +10,12 @@ import com.example.rememberme.databinding.ActivityMainBinding
 import com.example.rememberme.lists.AddNewListActivity
 import com.example.rememberme.lists.TaskListDetailsActivity
 import com.example.rememberme.lists.TaskListsDepositoryManager
+import com.example.rememberme.lists.TaskListsDepositoryManager.Companion.instance
 import com.example.rememberme.lists.TaskListsRecyclerAdapter
 import kotlinx.android.synthetic.main.activity_task_details.*
 
 const val EXTRA_TASK_INFO: String = "com.example.rememberme.task.info"
 const val REQUEST_TASK_DETAILS:Int = 564567
-
-class TaskHolder {
-    companion object{
-        var ClickedTask:Task? = null
-    }
-}
 
 class TaskListHolder {
     companion object{
@@ -47,22 +42,18 @@ class MainActivity : AppCompatActivity() {
 
         TaskListsDepositoryManager.instance.loadTaskLists()
 
+
         binding.taskListAddButton.setOnClickListener {
 
             addTaskList()
 
         }
 
-        // Later we can update the list with this
-        //taskAdapter.updateTaskList(listOf(Task))
-
     }
 
-    private fun addTaskList(/*title: String, tasks:MutableList<Task>*/){
+    private fun addTaskList(){
 
         startActivity(Intent(applicationContext, AddNewListActivity::class.java))
-        /*val taskCollection = TaskList(title, tasks)
-        TaskListsDepositoryManager.instance.addTaskList(taskCollection)*/
     }
 
     private fun onTaskListClicked(taskList: TaskList): Unit {
@@ -74,7 +65,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         startActivity(intent)
-        //startActivityForResult(intent, REQUEST_TASK_DETAILS)
     }
     
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
