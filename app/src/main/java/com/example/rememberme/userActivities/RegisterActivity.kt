@@ -1,8 +1,9 @@
-package com.example.rememberme
+package com.example.rememberme.userActivities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.example.rememberme.databinding.ActivityLoginBinding
 import com.example.rememberme.databinding.ActivityRegisterBinding
@@ -58,11 +59,20 @@ class RegisterActivity : AppCompatActivity() {
                             Toast.makeText(this, "User successfully created!", Toast.LENGTH_SHORT).show()
                             startActivity(Intent(applicationContext, LoginActivity::class.java))
                             finish()
+                            val user = auth.currentUser
+
+                            user!!.sendEmailVerification().addOnCompleteListener{ task ->
+                                if (task.isSuccessful){
+                                    Log.d(TAG,"Email verification sent!")
+                                }
+                            }
                         }
                     }
 
 
                 } else {
+
+                    Log.e("Error:" + task.exception, "Error")
 
                 }
 

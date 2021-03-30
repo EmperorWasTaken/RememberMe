@@ -1,10 +1,11 @@
-package com.example.rememberme
+package com.example.rememberme.userActivities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.example.rememberme.MainActivity
 import com.example.rememberme.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -32,17 +33,17 @@ class LoginActivity : AppCompatActivity() {
             loginUser()
         }
 
-        // Will be worked on
+
         binding.registerUser.setOnClickListener{
             registerNewUser()
         }
-        //Will be worked on
+
         binding.forgotPassword.setOnClickListener{
-            Toast.makeText(this, "Not yet implemented", Toast.LENGTH_SHORT).show()
+            forgotUserPassword()
         }
     }
 
-    // Simple login made with the documentation on Firebase.
+
     private fun loginUser() {
         val userEmail = usernameInput.text.toString().trim()
         val userPassword = passwordInput.text.toString().trim()
@@ -69,6 +70,8 @@ class LoginActivity : AppCompatActivity() {
     private fun registerNewUser(){
         startActivity(Intent(applicationContext, RegisterActivity::class.java))
     }
-
+    private fun forgotUserPassword() {
+        startActivity(Intent(applicationContext, ForgotPasswordActivity::class.java))
+    }
 
 }
