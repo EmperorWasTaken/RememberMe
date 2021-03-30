@@ -58,10 +58,10 @@ class TaskListsDepositoryManager {
         }
     }
 
-    fun updateTaskInListProgress(task: Task, progress: Boolean){
+    /*fun updateTaskInListProgress(task: Task, progress: Boolean){
         task.onChecked = progress
         TaskListHolder.ClickedList?.let {updateTasks(it.tasks)}
-    }
+    }*/
 
     fun updateTasks(tasks: List<Task>){
         onTask?.invoke(tasks)

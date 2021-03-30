@@ -8,12 +8,16 @@ import android.widget.Toast
 import com.example.rememberme.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
 
 private var TAG:String = "RememberMe:LoginActivity"
 private lateinit var binding: ActivityLoginBinding
 private lateinit var auth: FirebaseAuth
+private lateinit var refUsers: DatabaseReference
+private var fireBaseUserID:String = ""
 
 
 class LoginActivity : AppCompatActivity() {
@@ -30,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
 
         // Will be worked on
         binding.registerUser.setOnClickListener{
-            Toast.makeText(this, "Not yet implemented", Toast.LENGTH_SHORT).show()
+            registerNewUser()
         }
         //Will be worked on
         binding.forgotPassword.setOnClickListener{
@@ -61,4 +65,10 @@ class LoginActivity : AppCompatActivity() {
 
         }
     }
+
+    private fun registerNewUser(){
+        startActivity(Intent(applicationContext, RegisterActivity::class.java))
+    }
+
+
 }

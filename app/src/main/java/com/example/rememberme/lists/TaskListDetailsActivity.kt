@@ -10,11 +10,18 @@ import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rememberme.EXTRA_TASK_INFO
 import com.example.rememberme.TaskListHolder
+import com.example.rememberme.data.Task
 import com.example.rememberme.data.TaskList
 import com.example.rememberme.databinding.ListTaskLayoutBinding
 import com.example.rememberme.tasks.AddNewTaskActivity
 import com.example.rememberme.tasks.TaskRecyclerAdapter
 import kotlinx.android.synthetic.main.activity_task_list_details.*
+
+class TaskHolder {
+    companion object{
+        var ClickedTask: Task? = null
+    }
+}
 
 class TaskListDetailsActivity : AppCompatActivity() {
 
@@ -56,12 +63,12 @@ class TaskListDetailsActivity : AppCompatActivity() {
 
         //TaskListsDepositoryManager.instance.loadTaskLists()
 
-        progressBarCompletion.progress = 0
+        /*progressBarCompletion.progress = 0
         progressStatus = 0
 
-        val tasksCompleted: Float = 0F
+        val tasksCompleted: Float = 0F*/
 
-        Thread(Runnable {
+        /*Thread(Runnable {
             while (progressStatus < tasksCompleted){
                 progressStatus +=1
 
@@ -77,11 +84,12 @@ class TaskListDetailsActivity : AppCompatActivity() {
 
                 }
             }
-        })
+        })*/
 
     }
 
     private fun newTaskActivity(){
         startActivity(Intent(applicationContext, AddNewTaskActivity::class.java))
     }
+
 }

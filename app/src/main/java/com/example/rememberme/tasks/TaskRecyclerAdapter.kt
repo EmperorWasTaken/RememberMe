@@ -24,7 +24,7 @@ class TaskRecyclerAdapter (private var tasks:List<Task>) : RecyclerView.Adapter<
                 TaskListsDepositoryManager.instance.removeTaskInList(TaskListHolder.ClickedList, task)
             }
 
-            binding.taskCheckBox.setOnClickListener{
+            /*binding.taskCheckBox.setOnClickListener{
 
                 val progress = !task.onChecked
                 binding.taskCheckBox.isChecked = progress
@@ -32,7 +32,7 @@ class TaskRecyclerAdapter (private var tasks:List<Task>) : RecyclerView.Adapter<
                 TaskListsDepositoryManager.instance.updateTaskInListProgress(task, progress)
 
 
-            }
+            }*/
 
         }
     }
