@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".userActivities.LoginActivity">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -99,6 +99,7 @@
                         android:layout_height="45dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/borderbox_bg"
+                        android:inputType="textPassword"
                         android:fontFamily="sans-serif-light"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
