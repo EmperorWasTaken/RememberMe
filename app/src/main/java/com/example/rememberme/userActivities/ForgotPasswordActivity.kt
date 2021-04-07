@@ -49,8 +49,8 @@ class ForgotPasswordActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     Log.d(TAG, "Email sent.")
                     Toast.makeText(this, "Password is reset! taking you back to login now", Toast.LENGTH_SHORT).show()
-                    finish()
                     startActivity(Intent(applicationContext, LoginActivity::class.java))
+                    finish()
                 } else {
                     Log.e("Error:" + task.exception, "Error")
                 }

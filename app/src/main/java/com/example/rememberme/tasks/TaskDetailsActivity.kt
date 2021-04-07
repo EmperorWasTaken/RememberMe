@@ -22,7 +22,6 @@ class TaskDetailsActivity : AppCompatActivity() {
         binding = ListTaskLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //val receivedTasks = intent.getParcelableExtra<Task>(EXTRA_TASK_INFO)
         val receivedTasks = TaskHolder.ClickedTask
 
         if(receivedTasks != null){

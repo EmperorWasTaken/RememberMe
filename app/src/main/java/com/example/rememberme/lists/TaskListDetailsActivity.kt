@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.activity_task_list_details.*
 class TaskHolder {
     companion object{
         var ClickedTask: Task? = null
+        var position: Int? = null
     }
 }
 
@@ -28,9 +29,13 @@ class TaskListDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ListTaskLayoutBinding
     private lateinit var taskList: TaskList
     private lateinit var progressBar: ProgressBar
+    private var position: Int = 0
+
 
     var progressStatus = 0
     var handler = Handler()
+
+    private val taskListsDepositoryManager = TaskListsDepositoryManager()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,9 +43,13 @@ class TaskListDetailsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val receivedTaskLists = TaskListHolder.ClickedList
+        val pos = TaskListHolder.position
 
         if(receivedTaskLists != null){
             taskList = receivedTaskLists
+            if (pos != null) {
+                position = pos
+            }
             Log.i("Details view", receivedTaskLists.toString())
         } else {
             setResult(Activity.RESULT_CANCELED, Intent(EXTRA_TASK_INFO).apply {
@@ -51,9 +60,9 @@ class TaskListDetailsActivity : AppCompatActivity() {
         }
         binding.titleList.text = taskList.listTitle
         binding.taskList.layoutManager = LinearLayoutManager(this)
-        binding.taskList.adapter = TaskRecyclerAdapter(taskList.tasks)
+        binding.taskList.adapter = TaskRecyclerAdapter(taskList.tasks, this)
 
-        TaskListsDepositoryManager.instance.onTask = {
+        taskListsDepositoryManager.onTaskL = {
             (binding.taskList.adapter as TaskRecyclerAdapter).updateTask(it)
         }
 
@@ -86,6 +95,10 @@ class TaskListDetailsActivity : AppCompatActivity() {
             }
         })*/
 
+    }
+    override fun onResume() {
+        super.onResume()
+        taskListsDepositoryManager.loadTask(taskList.listTitle)
     }
 
     private fun newTaskActivity(){

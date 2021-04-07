@@ -14,6 +14,7 @@ class AddNewListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddNewListBinding
     private lateinit var database: FirebaseDatabase
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddNewListBinding.inflate(layoutInflater)

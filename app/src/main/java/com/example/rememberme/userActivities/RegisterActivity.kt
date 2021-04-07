@@ -57,15 +57,15 @@ class RegisterActivity : AppCompatActivity() {
                     refUsers.updateChildren(userHashMap).addOnCompleteListener{ task ->
                         if (task.isSuccessful){
                             Toast.makeText(this, "User successfully created!", Toast.LENGTH_SHORT).show()
-                            startActivity(Intent(applicationContext, LoginActivity::class.java))
-                            finish()
-                            val user = auth.currentUser
 
+                            val user = auth.currentUser
                             user!!.sendEmailVerification().addOnCompleteListener{ task ->
                                 if (task.isSuccessful){
                                     Log.d(TAG,"Email verification sent!")
                                 }
                             }
+                            startActivity(Intent(applicationContext, LoginActivity::class.java))
+                            finish()
                         }
                     }
 

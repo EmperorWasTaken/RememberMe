@@ -1,7 +1,10 @@
 package com.example.rememberme.tasks
 
+import android.app.Activity
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rememberme.TaskListHolder
 import com.example.rememberme.data.Task
@@ -10,18 +13,20 @@ import com.example.rememberme.databinding.ActivityTaskDetailsBinding
 import com.example.rememberme.lists.TaskListsDepositoryManager
 import com.example.rememberme.lists.TaskListsRecyclerAdapter
 
-class TaskRecyclerAdapter (private var tasks:List<Task>) : RecyclerView.Adapter<TaskRecyclerAdapter.ViewHolder>() {
+class TaskRecyclerAdapter (private var tasks:List<Task>, private var contexts: Context) : RecyclerView.Adapter<TaskRecyclerAdapter.ViewHolder>() {
 
 
     class ViewHolder(val binding: ActivityTaskDetailsBinding):RecyclerView.ViewHolder(binding.root){
-        fun bind(task: Task){
+        fun bind(task: Task, position: Int, contexts: Context){
             binding.titleTask.text = task.taskTitle
             binding.taskCheckBox.isChecked = task.onChecked
 
             binding.taskCard.radius = 0F
 
             binding.deleteTaskButton.setOnClickListener{
-                TaskListsDepositoryManager.instance.removeTaskInList(TaskListHolder.ClickedList, task)
+                TaskListsDepositoryManager.instance.removeTaskInList(TaskListHolder.ClickedList, task, position)
+                Toast.makeText(contexts, "Task deleted", Toast.LENGTH_LONG).show()
+                (contexts as Activity).finish()
             }
 
             /*binding.taskCheckBox.setOnClickListener{
@@ -42,7 +47,8 @@ class TaskRecyclerAdapter (private var tasks:List<Task>) : RecyclerView.Adapter<
     override fun onBindViewHolder(holder: TaskRecyclerAdapter.ViewHolder, position: Int) {
 
         val task = tasks[position]
-        holder.bind(task)
+        val context = contexts
+        holder.bind(task, position, context)
 
     }
 
