@@ -57,6 +57,7 @@ class LoginActivity : AppCompatActivity() {
                         if (task.isSuccessful) {
                             startActivity(Intent(applicationContext, MainActivity::class.java))
                             Log.d(TAG, "Logged in")
+                            finish()
                         } else {
                             Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show()
                             Log.w(TAG, "Not logged in", task.exception)
