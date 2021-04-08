@@ -28,17 +28,15 @@
             android:orientation="vertical">
 
 
-            <ProgressBar
-                android:id="@+id/progressBarCompletion"
-                style="?android:attr/progressBarStyle"
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/titleTaskList"
                 android:paddingLeft="20dp"
+                app:srcCompat="@drawable/ic_smile"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentBottom="true"
-                android:theme="@style/Theme.RememberMe.NoActionBar"
-                android:progress="0"/>
+                android:theme="@style/Theme.RememberMe.NoActionBar"/>
 
             <TextView
                 android:id="@+id/titleTaskList"
