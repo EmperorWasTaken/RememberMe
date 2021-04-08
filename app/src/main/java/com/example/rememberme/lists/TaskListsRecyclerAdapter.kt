@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.rememberme.MainActivity
 import com.example.rememberme.data.TaskList
 import com.example.rememberme.databinding.ActivityTaskListDetailsBinding
-import kotlin.reflect.KFunction1
+
 
 class TaskListsRecyclerAdapter(private var taskLists:List<TaskList>, private var contexts: Context, private val onTaskListClicked:(TaskList, Int) -> Unit): RecyclerView.Adapter<TaskListsRecyclerAdapter.ViewHolder>() {
 

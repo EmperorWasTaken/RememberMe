@@ -10,10 +10,6 @@ class SplashActivity : AppCompatActivity() {
 
     private val handler = Handler()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     private val runnable = Runnable {
         if (!isFinishing) {
             startActivity(Intent(applicationContext, LoginActivity::class.java))

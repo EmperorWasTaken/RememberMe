@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.list_task_layout.*
 class AddNewListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddNewListBinding
-    private lateinit var database: FirebaseDatabase
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +34,6 @@ class AddNewListActivity : AppCompatActivity() {
             val taskList = TaskList(listTitle, mutableList, progress)
 
             TaskListsDepositoryManager.instance.addTaskList(taskList)
-            //TaskListsDepositoryManager.instance.updateTaskLists(taskList)
 
             finish()
         }

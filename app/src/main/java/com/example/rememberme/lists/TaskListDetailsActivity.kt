@@ -28,12 +28,7 @@ class TaskListDetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ListTaskLayoutBinding
     private lateinit var taskList: TaskList
-    private lateinit var progressBar: ProgressBar
     private var position: Int = 0
-
-
-    var progressStatus = 0
-    var handler = Handler()
 
     private val taskListsDepositoryManager = TaskListsDepositoryManager()
 

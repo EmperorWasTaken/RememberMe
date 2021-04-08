@@ -11,14 +11,11 @@ import com.google.firebase.database.FirebaseDatabase
 
 class TaskListsDepositoryManager {
 
-    private lateinit var listCollection:MutableList<TaskList>
-    private lateinit var taskCollection:MutableList<Task>
-    private var database = FirebaseDatabase.getInstance().reference
-    private lateinit var refUsers: DatabaseReference
-    private var fireBaseUserID:String = ""
+    private var listCollection:MutableList<TaskList>
+    private var taskCollection:MutableList<Task>
     private var taskID:String = ""
-    private lateinit var firebaseManager: ListFirebaseManager
-    private lateinit var taskFirebaseManager: TaskFirebaseManager
+    private var firebaseManager: ListFirebaseManager
+    private var taskFirebaseManager: TaskFirebaseManager
 
     var onChange:((List<TaskList>) -> Unit)? = null
     var onChangeL:((List<Task>) -> Unit)? = null
