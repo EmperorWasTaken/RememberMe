@@ -15,9 +15,6 @@ class ListFirebaseManager(
     private val TAG:String = "RememberMe:FirebaseManager"
 
     private var database = FirebaseDatabase.getInstance().reference
-    private lateinit var refUsers: DatabaseReference
-    private var fireBaseUserID:String = ""
-    private var taskID:String = ""
 
 
 
@@ -32,7 +29,7 @@ class ListFirebaseManager(
             }
 
             it.children.mapNotNullTo(listCollection) {
-                it.getValue<TaskList>(TaskList::class.java)
+                it.getValue(TaskList::class.java)
             }
 
             Log.println(Log.VERBOSE, "FirebaseManager", "I just executed successfully")

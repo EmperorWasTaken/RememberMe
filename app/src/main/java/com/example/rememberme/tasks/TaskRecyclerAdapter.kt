@@ -41,7 +41,7 @@ class TaskRecyclerAdapter (private var tasks:List<Task>, private var contexts: C
 
     override fun getItemCount(): Int = tasks.size
 
-    override fun onBindViewHolder(holder: TaskRecyclerAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val task = tasks[position]
         val context = contexts
@@ -49,12 +49,12 @@ class TaskRecyclerAdapter (private var tasks:List<Task>, private var contexts: C
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskRecyclerAdapter.ViewHolder {
-        return TaskRecyclerAdapter.ViewHolder(ActivityTaskDetailsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(ActivityTaskDetailsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
-    public fun updateTask(newTask:List<Task>){
+    fun updateTask(newTask:List<Task>){
         tasks = newTask
         notifyDataSetChanged()
     }

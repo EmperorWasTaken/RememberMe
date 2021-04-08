@@ -17,10 +17,6 @@ class TaskFirebaseManager(
     private val TAG:String = "RememberMe:FirebaseManager"
 
     private var database = FirebaseDatabase.getInstance().reference
-    private lateinit var refUsers: DatabaseReference
-    private var fireBaseUserID:String = ""
-    private var taskID:String = ""
-
     init {
         database.keepSynced(true)
     }
@@ -32,7 +28,7 @@ class TaskFirebaseManager(
             }
 
             it.children.mapNotNullTo(taskCollection) {
-                it.getValue<com.example.rememberme.data.Task>(com.example.rememberme.data.Task::class.java)
+                it.getValue(com.example.rememberme.data.Task::class.java)
             }
 
             Log.println(Log.VERBOSE, "FirebaseManager", "I just executed successfully")
