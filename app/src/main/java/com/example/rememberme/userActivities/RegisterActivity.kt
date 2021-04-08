@@ -54,15 +54,17 @@ class RegisterActivity : AppCompatActivity() {
                     userHashMap["useremail"] = userEmail
                     userHashMap["userpassword"] = userPassword
 
+                    val user = auth.currentUser
+                    user!!.sendEmailVerification().addOnCompleteListener{ task ->
+                        if (task.isSuccessful){
+                            Log.d(TAG,"Email verification sent!")
+                        }
+
                     refUsers.updateChildren(userHashMap).addOnCompleteListener{ task ->
                         if (task.isSuccessful){
                             Toast.makeText(this, "User successfully created!", Toast.LENGTH_SHORT).show()
 
-                            val user = auth.currentUser
-                            user!!.sendEmailVerification().addOnCompleteListener{ task ->
-                                if (task.isSuccessful){
-                                    Log.d(TAG,"Email verification sent!")
-                                }
+
                             }
                             startActivity(Intent(applicationContext, LoginActivity::class.java))
                             finish()
@@ -71,6 +73,8 @@ class RegisterActivity : AppCompatActivity() {
 
 
                 } else {
+
+                    Toast.makeText(this, "User already exists", Toast.LENGTH_SHORT).show()
 
                     Log.e("Error:" + task.exception, "Error")
 

@@ -1,8 +1,14 @@
 package com.example.rememberme
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
+import androidx.core.content.ContextCompat.getDrawable
+import androidx.core.content.res.ResourcesCompat.getDrawable
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rememberme.data.*
 import com.example.rememberme.databinding.ActivityMainBinding
@@ -10,6 +16,9 @@ import com.example.rememberme.lists.AddNewListActivity
 import com.example.rememberme.lists.TaskListDetailsActivity
 import com.example.rememberme.lists.TaskListsDepositoryManager
 import com.example.rememberme.lists.TaskListsRecyclerAdapter
+import com.example.rememberme.userActivities.LoginActivity
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.NonCancellable.cancel
 
 const val EXTRA_TASK_INFO: String = "com.example.rememberme.task.info"
 const val REQUEST_TASK_DETAILS:Int = 564567
@@ -33,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         binding.taskListing.layoutManager = LinearLayoutManager(this)
         binding.taskListing.adapter = TaskListsRecyclerAdapter(emptyList<TaskList>(),this, this::onTaskListClicked)
 
@@ -45,6 +55,28 @@ class MainActivity : AppCompatActivity() {
 
             addTaskList()
 
+        }
+
+        binding.logOutButton.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(R.string.dialogTitle)
+            builder.setMessage(R.string.dialogMessage)
+
+            builder.setPositiveButton("Yes"){dialogInterface, which ->
+                Toast.makeText(applicationContext, "Logging out", Toast.LENGTH_SHORT).show()
+                FirebaseAuth.getInstance().signOut();
+                startActivity(Intent(applicationContext, LoginActivity::class.java))
+                finish()
+
+
+            }
+            builder.setNegativeButton("No"){dialogInterface, which ->
+                Toast.makeText(applicationContext, "Staying logged in", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+            val alertDialog: AlertDialog = builder.create()
+            alertDialog.setCancelable(false)
+            alertDialog.show()
         }
 
     }

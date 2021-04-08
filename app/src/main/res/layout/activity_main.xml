@@ -47,6 +47,18 @@
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/logOutButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_margin="16dp"
+            android:layout_gravity="bottom|left"
+            app:srcCompat="@drawable/ic_log_out"
+            android:contentDescription="Log Out"
+            android:elevation="2dp"/>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/taskListAddButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

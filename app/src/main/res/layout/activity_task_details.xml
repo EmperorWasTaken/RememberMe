@@ -63,7 +63,9 @@
                 android:layout_height="30dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"/>
+                android:layout_alignParentLeft="true"
+                android:paddingLeft="10dp"
+                android:layout_marginLeft="10dp"/>
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
