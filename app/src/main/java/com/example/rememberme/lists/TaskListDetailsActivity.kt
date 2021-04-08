@@ -9,6 +9,7 @@ import android.util.Log
 import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rememberme.EXTRA_TASK_INFO
+import com.example.rememberme.MainActivity
 import com.example.rememberme.TaskListHolder
 import com.example.rememberme.data.Task
 import com.example.rememberme.data.TaskList
@@ -63,6 +64,11 @@ class TaskListDetailsActivity : AppCompatActivity() {
 
         binding.taskAddButton.setOnClickListener(){
             newTaskActivity()
+        }
+
+        binding.goBackButton.setOnClickListener(){
+            startActivity(Intent(applicationContext, MainActivity::class.java))
+            
         }
 
 
