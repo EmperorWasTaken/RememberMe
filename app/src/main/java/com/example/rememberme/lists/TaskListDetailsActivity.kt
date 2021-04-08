@@ -70,30 +70,6 @@ class TaskListDetailsActivity : AppCompatActivity() {
             newTaskActivity()
         }
 
-        //TaskListsDepositoryManager.instance.loadTaskLists()
-
-        /*progressBarCompletion.progress = 0
-        progressStatus = 0
-
-        val tasksCompleted: Float = 0F*/
-
-        /*Thread(Runnable {
-            while (progressStatus < tasksCompleted){
-                progressStatus +=1
-
-                Thread.sleep(50)
-
-                handler.post {
-                    progressBar.progress = progressStatus
-
-                    var percentage = ((progressStatus.toDouble() / 100))
-
-                    TaskListsDepositoryManager.instance.updateTaskInListProgress(task, percentage)
-
-
-                }
-            }
-        })*/
 
     }
     override fun onResume() {

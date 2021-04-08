@@ -3,6 +3,7 @@ package com.example.rememberme.lists
 import android.util.Log
 import com.example.rememberme.ListFirebaseManager
 import com.example.rememberme.TaskFirebaseManager
+import com.example.rememberme.TaskListHolder
 import com.example.rememberme.data.Task
 import com.example.rememberme.data.TaskList
 import com.google.firebase.database.DatabaseReference
@@ -102,6 +103,13 @@ class TaskListsDepositoryManager {
             updateTasks(taskList.tasks)
             updateChangeTask()
         }
+    }
+
+    fun updateTaskProgress(task: Task, progress: Boolean){
+        task.onChecked = progress
+        TaskListHolder.ClickedList?.let {updateTasks(it.tasks)}
+        updateChangeTask()
+
     }
 
     fun updateTasks(tasks: List<Task>){
