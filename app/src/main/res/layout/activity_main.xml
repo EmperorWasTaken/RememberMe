@@ -37,7 +37,7 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -58,6 +58,12 @@
             android:elevation="2dp"/>
 
 
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom|right">
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/taskListAddButton"
             android:layout_width="match_parent"
@@ -69,6 +75,8 @@
             android:contentDescription="Add a new list"
             android:elevation="2dp"/>
 
-    </LinearLayout>
+
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
