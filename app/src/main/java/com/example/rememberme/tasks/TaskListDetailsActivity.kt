@@ -16,6 +16,7 @@ import com.example.rememberme.data.TaskList
 import com.example.rememberme.databinding.ListTaskLayoutBinding
 import com.example.rememberme.tasks.AddNewTaskActivity
 import com.example.rememberme.tasks.TaskRecyclerAdapter
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_task_list_details.*
 
 class TaskHolder {
@@ -54,9 +55,12 @@ class TaskListDetailsActivity : AppCompatActivity() {
 
             finish()
         }
+
+        taskListsDepositoryManager.loadTask(taskList.listTitle)
+
         binding.titleList.text = taskList.listTitle
         binding.taskList.layoutManager = LinearLayoutManager(this)
-        binding.taskList.adapter = TaskRecyclerAdapter(taskList.tasks, this)
+        binding.taskList.adapter = TaskRecyclerAdapter(taskListsDepositoryManager.taskCollection, this, TaskListHolder.listName!!, TaskListHolder.position!!)
 
         taskListsDepositoryManager.onTaskL = {
             (binding.taskList.adapter as TaskRecyclerAdapter).updateTask(it)
@@ -79,7 +83,14 @@ class TaskListDetailsActivity : AppCompatActivity() {
     }
 
     private fun newTaskActivity(){
-        startActivity(Intent(applicationContext, AddNewTaskActivity::class.java))
+        // startActivity(Intent(applicationContext, AddNewTaskActivity::class.java))
+        AddNewTaskActivity(
+            taskListsDepositoryManager
+        ).show(
+            supportFragmentManager, "TASK_LIST_FRAGMENT"
+        )
+        binding.taskList.adapter?.notifyDataSetChanged()
+
     }
 
 }

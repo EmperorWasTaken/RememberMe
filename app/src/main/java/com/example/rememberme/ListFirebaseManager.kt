@@ -29,7 +29,7 @@ class ListFirebaseManager(
             }
 
             it.children.mapNotNullTo(listCollection) {
-                it.getValue(TaskList::class.java)
+                it.getValue<TaskList>(TaskList::class.java)
             }
 
             Log.println(Log.VERBOSE, "FirebaseManager", "I just executed successfully")

@@ -1,7 +1,12 @@
 package com.example.rememberme.lists
 
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import com.example.rememberme.data.Task
 import com.example.rememberme.data.TaskList
 import com.example.rememberme.databinding.ActivityAddNewListBinding
@@ -9,19 +14,30 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.core.Constants
 import kotlinx.android.synthetic.main.list_task_layout.*
 
-class AddNewListActivity : AppCompatActivity() {
+class AddNewListActivity(
+    private val ListsDepositoryManager: TaskListsDepositoryManager
+) : DialogFragment() {
 
-    private lateinit var binding: ActivityAddNewListBinding
+    private lateinit var _binding: ActivityAddNewListBinding
+    private val binding get() = _binding!!
+    private var listsDepositoryManager = ListsDepositoryManager
 
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return super.onCreateDialog(savedInstanceState)
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityAddNewListBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onStart() {
+        super.onStart()
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = ActivityAddNewListBinding.inflate(layoutInflater)
 
         binding.newListTitleButton.setOnClickListener {
             newList()
         }
+
+        return binding.root
     }
 
     private fun newList() {
@@ -33,9 +49,10 @@ class AddNewListActivity : AppCompatActivity() {
             val progress = 0.0F
             val taskList = TaskList(listTitle, mutableList, progress)
 
-            TaskListsDepositoryManager.instance.addTaskList(taskList)
+            listsDepositoryManager.addTaskList(taskList)
 
-            finish()
+            dialog?.hide()
+            dialog?.cancel()
         }
     }
 }

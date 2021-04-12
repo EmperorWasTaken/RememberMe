@@ -3,6 +3,7 @@ package com.example.rememberme.tasks
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -14,11 +15,17 @@ import com.example.rememberme.databinding.ActivityTaskDetailsBinding
 import com.example.rememberme.lists.TaskListDetailsActivity
 import com.example.rememberme.lists.TaskListsDepositoryManager
 import com.example.rememberme.lists.TaskListsRecyclerAdapter
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 
-class TaskRecyclerAdapter (private var tasks:List<Task>, private var contexts: Context) : RecyclerView.Adapter<TaskRecyclerAdapter.ViewHolder>() {
+class TaskRecyclerAdapter (private var tasks:List<Task>, private var contexts: Context, private val listName: String, private val listId: Int) : RecyclerView.Adapter<TaskRecyclerAdapter.ViewHolder>() {
 
 
     class ViewHolder(val binding: ActivityTaskDetailsBinding):RecyclerView.ViewHolder(binding.root){
+        val checkedTask = binding.taskCheckBox
+
         fun bind(task: Task, position: Int, contexts: Context){
             binding.titleTask.text = task.taskTitle
             binding.taskCheckBox.isChecked = task.onChecked
@@ -31,21 +38,37 @@ class TaskRecyclerAdapter (private var tasks:List<Task>, private var contexts: C
                 contexts.startActivity(Intent(contexts, TaskListDetailsActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
                 (contexts as Activity).finish()
             }
-
-            binding.taskCheckBox.setOnClickListener{
-
-            }
-
         }
     }
 
-    override fun getItemCount(): Int = tasks.size
+    override fun getItemCount(): Int = tasks.count()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val task = tasks[position]
         val context = contexts
+        //val taskID = taskID
         holder.bind(task, position, context)
+
+
+        holder.checkedTask.setOnCheckedChangeListener{ _, _ ->
+            val dbCheck = FirebaseDatabase.getInstance().reference
+
+            //val newCheckedTask = Task(task.taskTitle, holder.checkedTask.isChecked)
+            tasks[position].onChecked = holder.checkedTask.isChecked
+
+            dbCheck.child("Tasks").child(FirebaseAuth.getInstance().currentUser.uid).child(listName).setValue(tasks).addOnCompleteListener{
+                if (it.isSuccessful){
+                    println("Yey2")
+                } else {
+                    println("No2")
+                }
+
+            }
+
+        }
+
+
 
     }
 
