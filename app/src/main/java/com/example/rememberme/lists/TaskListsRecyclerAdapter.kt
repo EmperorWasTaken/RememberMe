@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rememberme.MainActivity
+import com.example.rememberme.data.Task
 import com.example.rememberme.data.TaskList
 import com.example.rememberme.databinding.ActivityTaskListDetailsBinding
+import java.util.Locale.filter
 
 
 class TaskListsRecyclerAdapter(private var taskLists:List<TaskList>, private var contexts: Context, private val onTaskListClicked:(TaskList, Int) -> Unit): RecyclerView.Adapter<TaskListsRecyclerAdapter.ViewHolder>() {
@@ -30,7 +32,24 @@ class TaskListsRecyclerAdapter(private var taskLists:List<TaskList>, private var
                 contexts.startActivity(Intent(contexts, MainActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
                 (contexts as Activity).finish()
             }
+
+            binding.listProgressBar.progress = calculateProgressBar(taskList.tasks)
+            binding.listProgressBar.max = 100
         }
+
+        private fun calculateProgressBar(tasks: MutableList<Task>): Int {
+            val size: Float = tasks.size.toFloat()
+            var completedTasks: Float = 0.0f
+
+            tasks.forEach{
+                if(it.onChecked){
+                    completedTasks++
+                }
+            }
+            return (completedTasks/size * 100).toInt()
+        }
+
+
     }
 
     override fun getItemCount(): Int = taskLists.size

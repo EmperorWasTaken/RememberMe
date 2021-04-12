@@ -22,6 +22,20 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <ProgressBar
+                android:id="@+id/listViewProgressBar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/titleList"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="-1dp"
+                android:backgroundTint="#CF0023"
+                android:indeterminate="false"
+                android:indeterminateTint="@color/brightRed"
+                android:paddingTop="10dp"
+                android:progressTint="#EC0027" />
+
             <TextView
                 android:id="@+id/titleList"
                 android:layout_width="250dp"
@@ -43,12 +57,12 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignRight="@+id/titleList"
-                android:layout_marginRight="50dp"
                 android:layout_marginTop="20dp"
-                android:clickable="true"
+                android:layout_marginRight="50dp"
                 android:background="@color/transparent"
-                app:srcCompat="@drawable/ic_edit"
-                />
+                android:clickable="true"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_edit" />
         </RelativeLayout>
 
         <androidx.core.widget.NestedScrollView
