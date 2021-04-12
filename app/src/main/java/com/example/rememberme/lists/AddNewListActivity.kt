@@ -46,7 +46,7 @@ class AddNewListActivity(
         if(listTitle.isNotEmpty()){
 
             val mutableList = mutableListOf<Task>()
-            val progress = 0.0F
+            val progress = 0
             val taskList = TaskList(listTitle, mutableList, progress)
 
             listsDepositoryManager.addTaskList(taskList)

@@ -5,17 +5,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.fragment.app.DialogFragment
 import com.example.rememberme.TaskListHolder
 import com.example.rememberme.data.Task
-import com.example.rememberme.databinding.ActivityAddNewListBinding
 import com.example.rememberme.databinding.ActivityAddNewTaskBinding
-import com.example.rememberme.lists.TaskHolder
 import com.example.rememberme.lists.TaskListsDepositoryManager
 
 class AddNewTaskActivity(
-    private val TaskListsDepositoryManager: TaskListsDepositoryManager
+    private val TaskListsDepositoryManager: TaskListsDepositoryManager,
+    private val progressBar: ProgressBar
 ) : DialogFragment() {
+
 
     private lateinit var _binding: ActivityAddNewTaskBinding
     private val binding get() = _binding!!
@@ -51,9 +52,11 @@ class AddNewTaskActivity(
             TaskListsDepositoryManager.updateChange()
             TaskListsDepositoryManager.updateChangeTask()
 
+            progressBar.max = progressBar.max +1
+
+
             dialog?.hide()
             dialog?.cancel()
-            //TaskListsDepositoryManager.instance.createTaskInList(TaskListHolder.ClickedList, task)
 
         }
     }
