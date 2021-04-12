@@ -27,6 +27,7 @@ class TaskListHolder {
     companion object{
         var ClickedList:TaskList? = null
         var position: Int? = null
+        var listName: String? = null
     }
 }
 
@@ -88,13 +89,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun addTaskList(){
 
-        startActivity(Intent(applicationContext, AddNewListActivity::class.java))
+        AddNewListActivity(
+            taskListsDepositoryManager
+        ).show(
+            supportFragmentManager, "ADD_NEW_LIST_FRAGMENT"
+        )
     }
 
     private fun onTaskListClicked(taskList: TaskList, position: Int): Unit {
 
         TaskListHolder.ClickedList = taskList
         TaskListHolder.position = position
+        TaskListHolder.listName = taskListsDepositoryManager.listCollection[position].listTitle
 
         val intent = Intent(this, TaskListDetailsActivity::class.java).apply{
             putExtra(EXTRA_TASK_INFO, taskList)

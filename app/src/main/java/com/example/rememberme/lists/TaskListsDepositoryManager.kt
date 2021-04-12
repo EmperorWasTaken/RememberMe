@@ -1,18 +1,18 @@
 package com.example.rememberme.lists
 
 import android.util.Log
+import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import com.example.rememberme.ListFirebaseManager
 import com.example.rememberme.TaskFirebaseManager
 import com.example.rememberme.TaskListHolder
 import com.example.rememberme.data.Task
 import com.example.rememberme.data.TaskList
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 
 class TaskListsDepositoryManager {
 
-    private var listCollection:MutableList<TaskList>
-    private var taskCollection:MutableList<Task>
+    public var listCollection:MutableList<TaskList> = mutableListOf()
+    public var taskCollection:MutableList<Task> = mutableListOf()
     private var taskID:String = ""
     private var firebaseManager: ListFirebaseManager
     private var taskFirebaseManager: TaskFirebaseManager
@@ -39,6 +39,7 @@ class TaskListsDepositoryManager {
                 onTaskList?.invoke(listCollection)
             }
         }
+
     }
 
     fun loadTask(end: String){
@@ -56,6 +57,9 @@ class TaskListsDepositoryManager {
 
     fun addTaskList(taskList: TaskList){
         listCollection.add(taskList)
+
+        Log.println(Log.VERBOSE, "ADDDING NEW DATA", listCollection.toString())
+
         firebaseManager.putListData("Lists", taskID, listCollection)
 
         onTaskList?.invoke(listCollection)
@@ -78,15 +82,17 @@ class TaskListsDepositoryManager {
     }
 
 
-    fun createTaskInList(taskList:TaskList?, task: Task){
+    fun createTaskInList(taskList: TaskList?, task: Task){
 
         if (taskList != null){
             taskList.tasks.add(task)
             updateTasks(taskList.tasks)
             taskCollection.add(task)
             taskFirebaseManager.putTaskData("Tasks", taskList.listTitle, taskCollection)
-            onTaskList?.invoke(listCollection)
+            onTaskL?.invoke(taskCollection)
+            onTask?.invoke(taskCollection)
             updateChange()
+            updateChangeTask()
         }
 
     }
@@ -122,5 +128,9 @@ class TaskListsDepositoryManager {
 
     companion object{
         val instance = TaskListsDepositoryManager()
+    }
+
+    class ViewHolder (view: View) : RecyclerView.ViewHolder(view){
+
     }
 }

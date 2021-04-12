@@ -49,6 +49,11 @@ class TaskFirebaseManager(
         database.child("Tasks").child(FirebaseAuth.getInstance().currentUser.uid).child(path).child(position.toString()).removeValue()
     }
 
+    fun updateTaskData(path: String, position: Int, completed: Boolean){
+        Log.d("task","Task..."+FirebaseAuth.getInstance().currentUser.uid+"..."+path+"..."+position)
+        database.child("Tasks").child(FirebaseAuth.getInstance().currentUser.uid).child(path).child(position.toString()).setValue(completed)
+    }
+
 
 
     companion object{

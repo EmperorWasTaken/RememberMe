@@ -17,7 +17,6 @@
         <activity android:name=".lists.AddNewListActivity" />
         <activity android:name=".tasks.AddNewTaskActivity" />
         <activity android:name=".lists.TaskListDetailsActivity" />
-        <activity android:name=".tasks.TaskDetailsActivity" />
         <activity android:name=".userActivities.LoginActivity" />
         <activity
             android:name=".SplashActivity"

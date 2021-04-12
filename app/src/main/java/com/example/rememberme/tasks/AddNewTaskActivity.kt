@@ -1,26 +1,42 @@
 package com.example.rememberme.tasks
 
-import androidx.appcompat.app.AppCompatActivity
+import android.app.Dialog
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import com.example.rememberme.TaskListHolder
 import com.example.rememberme.data.Task
 import com.example.rememberme.databinding.ActivityAddNewListBinding
 import com.example.rememberme.databinding.ActivityAddNewTaskBinding
+import com.example.rememberme.lists.TaskHolder
 import com.example.rememberme.lists.TaskListsDepositoryManager
 
-class AddNewTaskActivity : AppCompatActivity() {
+class AddNewTaskActivity(
+    private val TaskListsDepositoryManager: TaskListsDepositoryManager
+) : DialogFragment() {
 
-    private lateinit var binding: ActivityAddNewTaskBinding
+    private lateinit var _binding: ActivityAddNewTaskBinding
+    private val binding get() = _binding!!
+    private var taskListsDepositoryManager = TaskListsDepositoryManager
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityAddNewTaskBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return super.onCreateDialog(savedInstanceState)
+    }
+
+    override fun onStart() {
+        super.onStart()
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = ActivityAddNewTaskBinding.inflate(layoutInflater)
 
         binding.newTaskTitleButton.setOnClickListener{
             newTask()
         }
 
+        return binding.root
     }
 
     private fun newTask() {
@@ -30,9 +46,15 @@ class AddNewTaskActivity : AppCompatActivity() {
 
             val task = Task(taskTitle, false)
 
-            TaskListsDepositoryManager.instance.createTaskInList(TaskListHolder.ClickedList, task)
+            taskListsDepositoryManager.createTaskInList(TaskListHolder.ClickedList, task)
 
-            finish()
+            TaskListsDepositoryManager.updateChange()
+            TaskListsDepositoryManager.updateChangeTask()
+
+            dialog?.hide()
+            dialog?.cancel()
+            //TaskListsDepositoryManager.instance.createTaskInList(TaskListHolder.ClickedList, task)
+
         }
     }
 }
