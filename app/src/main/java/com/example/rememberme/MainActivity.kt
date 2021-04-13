@@ -1,24 +1,18 @@
 package com.example.rememberme
 
-import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.content.res.AppCompatResources.getDrawable
-import androidx.core.content.ContextCompat.getDrawable
-import androidx.core.content.res.ResourcesCompat.getDrawable
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rememberme.data.*
 import com.example.rememberme.databinding.ActivityMainBinding
 import com.example.rememberme.lists.AddNewListActivity
 import com.example.rememberme.lists.TaskListDetailsActivity
-import com.example.rememberme.lists.TaskListsDepositoryManager
 import com.example.rememberme.lists.TaskListsRecyclerAdapter
 import com.example.rememberme.userActivities.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.NonCancellable.cancel
 
 const val EXTRA_TASK_INFO: String = "com.example.rememberme.task.info"
 const val REQUEST_TASK_DETAILS:Int = 564567
@@ -35,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val taskListsDepositoryManager = TaskListsDepositoryManager()
+    private val taskListsDepositoryManager = DepositoryManager()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

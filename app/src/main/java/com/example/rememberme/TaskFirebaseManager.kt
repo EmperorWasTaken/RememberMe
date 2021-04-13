@@ -14,8 +14,6 @@ class TaskFirebaseManager(
         private val taskCollection:MutableList<com.example.rememberme.data.Task>
 ) {
 
-    private val TAG:String = "RememberMe:FirebaseManager"
-
     private var database = FirebaseDatabase.getInstance().reference
     init {
         database.keepSynced(true)
@@ -47,11 +45,6 @@ class TaskFirebaseManager(
     fun removeTaskData(path: String, position: Int){
         Log.d("task","Task..."+FirebaseAuth.getInstance().currentUser.uid+"..."+path+"..."+position)
         database.child("Tasks").child(FirebaseAuth.getInstance().currentUser.uid).child(path).child(position.toString()).removeValue()
-    }
-
-    fun updateTaskData(path: String, position: Int, completed: Boolean){
-        Log.d("task","Task..."+FirebaseAuth.getInstance().currentUser.uid+"..."+path+"..."+position)
-        database.child("Tasks").child(FirebaseAuth.getInstance().currentUser.uid).child(path).child(position.toString()).setValue(completed)
     }
 
 

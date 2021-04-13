@@ -1,21 +1,18 @@
 package com.example.rememberme.lists
 
 import android.app.Dialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import com.example.rememberme.DepositoryManager
 import com.example.rememberme.data.Task
 import com.example.rememberme.data.TaskList
 import com.example.rememberme.databinding.ActivityAddNewListBinding
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.core.Constants
-import kotlinx.android.synthetic.main.list_task_layout.*
 
 class AddNewListActivity(
-    private val ListsDepositoryManager: TaskListsDepositoryManager
+    private val ListsDepositoryManager: DepositoryManager
 ) : DialogFragment() {
 
     private lateinit var _binding: ActivityAddNewListBinding

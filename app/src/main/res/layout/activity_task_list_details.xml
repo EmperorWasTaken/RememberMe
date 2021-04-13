@@ -36,19 +36,7 @@
                 app:srcCompat="@drawable/ic_smile"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentBottom="true"
-                android:theme="@style/Theme.RememberMe.NoActionBar"
-                android:visibility="invisible"/>
-
-            <ProgressBar
-                android:id="@+id/listProgressBar"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:indeterminate="false"
-                android:backgroundTint="#CF0023"
-                android:progressTint="#5E494C"
-                android:layout_alignParentBottom="true"
-                />
+                android:theme="@style/Theme.RememberMe.NoActionBar" />
 
             <TextView
                 android:id="@+id/titleTaskList"

@@ -1,20 +1,14 @@
-package com.example.rememberme.lists
+package com.example.rememberme
 
 import android.util.Log
-import android.view.View
 import android.widget.ProgressBar
-import androidx.recyclerview.widget.RecyclerView
-import com.example.rememberme.ListFirebaseManager
-import com.example.rememberme.TaskFirebaseManager
-import com.example.rememberme.TaskListHolder
 import com.example.rememberme.data.Task
 import com.example.rememberme.data.TaskList
-import java.util.Locale.filter
 
-class TaskListsDepositoryManager {
+class DepositoryManager {
 
-    public var listCollection:MutableList<TaskList> = mutableListOf()
-    public var taskCollection:MutableList<Task> = mutableListOf()
+    var listCollection:MutableList<TaskList> = mutableListOf()
+    var taskCollection:MutableList<Task> = mutableListOf()
     private var taskID:String = ""
     private var firebaseManager: ListFirebaseManager
     private var taskFirebaseManager: TaskFirebaseManager
@@ -48,7 +42,6 @@ class TaskListsDepositoryManager {
         taskFirebaseManager.retrieveTaskData("Tasks",end).addOnCompleteListener {
             if (it.isComplete) {
                 Log.println(Log.VERBOSE, "TaskDepositoryManager", taskCollection.toString())
-                //onTaskL?.invoke(taskCollection)
                 progressBar.max = it?.result?.children?.count()!!
                 progressBar.progress = getAllCheckedTasks().count()!!
             }
@@ -112,39 +105,10 @@ class TaskListsDepositoryManager {
         }
     }
 
-    fun calculateProgress(): Int? {
-        /*var progress: Int = 0
-        var completedTasks: Float = 0.0f
-        val size: Float? = TaskListHolder.ClickedList?.tasks?.size?.toFloat()
-
-        if (TaskListHolder.ClickedList != null){
-            val tasks = TaskListHolder.ClickedList!!.tasks
-            tasks.forEach {
-                if (it.onChecked){
-                    completedTasks++
-                }
-            }
-            progress = (completedTasks/size!! * 100).toInt()
-            TaskListHolder.ClickedList!!.progressList = progress
-
-
-        }*/
-        return taskCollection.size
-    }
-
-    fun updateTaskProgress(task: Task, status: Boolean){
-        task.onChecked = status
-        TaskListHolder.ClickedList?.let {updateTasks(it.tasks)}
-        updateChangeTask()
-        updateChange()
-
-    }
-
     fun getAllCheckedTasks(): List<Task> {
         return taskCollection.filter {
             it.onChecked}
     }
-
 
     fun updateTasks(tasks: List<Task>){
         onTask?.invoke(tasks)
@@ -158,10 +122,7 @@ class TaskListsDepositoryManager {
     }
 
     companion object{
-        val instance = TaskListsDepositoryManager()
+        val instance = DepositoryManager()
     }
 
-    class ViewHolder (view: View) : RecyclerView.ViewHolder(view){
-
-    }
 }

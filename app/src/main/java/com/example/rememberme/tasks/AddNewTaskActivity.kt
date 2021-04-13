@@ -10,16 +10,16 @@ import androidx.fragment.app.DialogFragment
 import com.example.rememberme.TaskListHolder
 import com.example.rememberme.data.Task
 import com.example.rememberme.databinding.ActivityAddNewTaskBinding
-import com.example.rememberme.lists.TaskListsDepositoryManager
+import com.example.rememberme.DepositoryManager
 
 class AddNewTaskActivity(
-    private val TaskListsDepositoryManager: TaskListsDepositoryManager,
-    private val progressBar: ProgressBar
+        private val TaskListsDepositoryManager: DepositoryManager,
+        private val progressBar: ProgressBar
 ) : DialogFragment() {
 
 
     private lateinit var _binding: ActivityAddNewTaskBinding
-    private val binding get() = _binding!!
+    private val binding get() = _binding
     private var taskListsDepositoryManager = TaskListsDepositoryManager
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -40,6 +40,7 @@ class AddNewTaskActivity(
         return binding.root
     }
 
+
     private fun newTask() {
         val taskTitle = binding.newTaskTitle.text.toString()
 
@@ -53,7 +54,6 @@ class AddNewTaskActivity(
             TaskListsDepositoryManager.updateChangeTask()
 
             progressBar.max = progressBar.max +1
-
 
             dialog?.hide()
             dialog?.cancel()
