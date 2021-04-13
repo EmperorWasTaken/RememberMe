@@ -2,26 +2,18 @@ package com.example.rememberme.lists
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
-import android.widget.ProgressBar
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.rememberme.DepositoryManager
 import com.example.rememberme.EXTRA_TASK_INFO
 import com.example.rememberme.MainActivity
 import com.example.rememberme.TaskListHolder
-import com.example.rememberme.data.Task
 import com.example.rememberme.data.TaskList
 import com.example.rememberme.databinding.ListTaskLayoutBinding
 import com.example.rememberme.tasks.AddNewTaskActivity
 import com.example.rememberme.tasks.TaskRecyclerAdapter
-import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_task_list_details.*
-import java.util.Locale.filter
-import java.util.logging.Level.WARNING
 
 
 class TaskListDetailsActivity : AppCompatActivity() {
@@ -30,7 +22,7 @@ class TaskListDetailsActivity : AppCompatActivity() {
     private lateinit var taskList: TaskList
     private var position: Int = 0
 
-    private lateinit var taskListsDepositoryManager: TaskListsDepositoryManager
+    private lateinit var taskListsDepositoryManager: DepositoryManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,13 +46,8 @@ class TaskListDetailsActivity : AppCompatActivity() {
             finish()
         }
 
-        taskListsDepositoryManager = TaskListsDepositoryManager()
+        taskListsDepositoryManager = DepositoryManager()
         taskListsDepositoryManager.loadTask(taskList.listTitle, binding.listViewProgressBar)
-
-        Log.println(Log.WARN, "Progress", taskListsDepositoryManager.calculateProgress().toString())
-
-        //binding.listViewProgressBar.max = taskListsDepositoryManager.calculateProgress()!!
-
 
         binding.titleList.text = taskList.listTitle
         binding.taskList.layoutManager = LinearLayoutManager(this)
@@ -79,13 +66,9 @@ class TaskListDetailsActivity : AppCompatActivity() {
             
         }
 
-        TaskListsDepositoryManager.instance.onTaskL= {
+        DepositoryManager.instance.onTaskL= {
             (binding.taskList.adapter as TaskRecyclerAdapter).updateTask(it)
-            //TaskListsDepositoryManager.instance.calculateProgress()
             binding.listViewProgressBar.max = taskListsDepositoryManager.taskCollection.count()
-            //println(taskListsDepositoryManager.taskCollection.count())
-            //Log.println(Log.WARN, "Progress", taskListsDepositoryManager.taskCollection.count().toString())
-            //binding.listViewProgressBar.progress = 2
 
         }
 

@@ -7,11 +7,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rememberme.DepositoryManager
 import com.example.rememberme.MainActivity
-import com.example.rememberme.data.Task
 import com.example.rememberme.data.TaskList
 import com.example.rememberme.databinding.ActivityTaskListDetailsBinding
-import java.util.Locale.filter
 
 
 class TaskListsRecyclerAdapter(private var taskLists:List<TaskList>, private var contexts: Context, private val onTaskListClicked:(TaskList, Int) -> Unit): RecyclerView.Adapter<TaskListsRecyclerAdapter.ViewHolder>() {
@@ -27,28 +26,13 @@ class TaskListsRecyclerAdapter(private var taskLists:List<TaskList>, private var
             }
 
             binding.deleteListButton.setOnClickListener {
-                TaskListsDepositoryManager.instance.removeTaskList(taskList, position)
+                DepositoryManager.instance.removeTaskList(taskList, position)
                 Toast.makeText(contexts, "List deleted" , Toast.LENGTH_LONG).show()
                 contexts.startActivity(Intent(contexts, MainActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
                 (contexts as Activity).finish()
             }
 
-            binding.listProgressBar.progress = calculateProgressBar(taskList.tasks)
-            binding.listProgressBar.max = 100
         }
-
-        private fun calculateProgressBar(tasks: MutableList<Task>): Int {
-            val size: Float = tasks.size.toFloat()
-            var completedTasks: Float = 0.0f
-
-            tasks.forEach{
-                if(it.onChecked){
-                    completedTasks++
-                }
-            }
-            return (completedTasks/size * 100).toInt()
-        }
-
 
     }
 
@@ -66,7 +50,7 @@ class TaskListsRecyclerAdapter(private var taskLists:List<TaskList>, private var
         return ViewHolder(ActivityTaskListDetailsBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
-    public fun updateTaskList(newTaskLists:List<TaskList>){
+    fun updateTaskList(newTaskLists:List<TaskList>){
         taskLists = newTaskLists
         notifyDataSetChanged()
     }
