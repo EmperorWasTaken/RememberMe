@@ -36,7 +36,7 @@ This is a _solo_ project, where as I accept constructive criticism I do not acce
 - User activites neatly put into own folder for ease
 - Variabel names have a meaning behind them, easy to read code and understand what does what, instead of a million small comments
 
-## TODO
+## TODO!
 
 #### Lists & Tasks
 - Emoji update on progress complete, go from frowny face to smiley face
