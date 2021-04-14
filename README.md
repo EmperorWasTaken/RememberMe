@@ -45,4 +45,4 @@ This is a _solo_ project, where as I accept constructive criticism I do not acce
 - Getting rid of "System UI isn't respoding" message
 
 ## Firebase App Distribution
-- ![Invite Link](https://appdistribution.firebase.dev/i/bc0b7be5384badf4)
+- [Invite Link](https://appdistribution.firebase.dev/i/bc0b7be5384badf4)
