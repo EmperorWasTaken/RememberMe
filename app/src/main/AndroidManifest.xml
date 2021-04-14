@@ -30,8 +30,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.RememberMe.NoActionBar" />
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

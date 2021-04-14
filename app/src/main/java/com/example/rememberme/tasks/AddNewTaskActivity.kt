@@ -11,6 +11,7 @@ import com.example.rememberme.TaskListHolder
 import com.example.rememberme.data.Task
 import com.example.rememberme.databinding.ActivityAddNewTaskBinding
 import com.example.rememberme.DepositoryManager
+import com.example.rememberme.R
 
 class AddNewTaskActivity(
         private val TaskListsDepositoryManager: DepositoryManager,
@@ -32,6 +33,8 @@ class AddNewTaskActivity(
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = ActivityAddNewTaskBinding.inflate(layoutInflater)
+
+        dialog?.window?.setBackgroundDrawableResource(R.color.transparent)
 
         binding.newTaskTitleButton.setOnClickListener{
             newTask()

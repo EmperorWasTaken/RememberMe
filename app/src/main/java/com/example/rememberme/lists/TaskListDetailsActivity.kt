@@ -66,6 +66,8 @@ class TaskListDetailsActivity : AppCompatActivity() {
             
         }
 
+
+
         DepositoryManager.instance.onTaskL= {
             (binding.taskList.adapter as TaskRecyclerAdapter).updateTask(it)
             binding.listViewProgressBar.max = taskListsDepositoryManager.taskCollection.count()

@@ -53,6 +53,7 @@
             android:clickable="true"
             android:layout_margin="16dp"
             android:layout_gravity="bottom|left"
+            android:backgroundTint="#CF0023"
             app:srcCompat="@drawable/ic_log_out"
             android:contentDescription="Log Out"
             android:elevation="2dp"/>
@@ -71,6 +72,7 @@
             android:clickable="true"
             android:layout_margin="16dp"
             android:layout_gravity="bottom|end"
+            android:backgroundTint="#CF0023"
             app:srcCompat="@drawable/ic_task_add"
             android:contentDescription="Add a new list"
             android:elevation="2dp"/>
