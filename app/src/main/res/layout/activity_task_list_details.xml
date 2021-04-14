@@ -15,8 +15,8 @@
         android:layout_height="100dp"
         android:clickable="true"
         app:cardBackgroundColor="@color/transparent"
-        app:cardCornerRadius="1dp"
-        app:cardElevation="5dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="2dp"
         app:cardUseCompatPadding="true"
         android:focusable="false"
         tools:context=".MainActivity">
@@ -29,6 +29,20 @@
 
 
             <ImageView
+                android:id="@+id/imageFrown"
+                android:visibility="visible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/titleTaskList"
+                android:paddingLeft="20dp"
+                app:srcCompat="@drawable/ic_frown"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:theme="@style/Theme.RememberMe.NoActionBar" />
+
+            <ImageView
+                android:id="@+id/imageSmile"
+                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/titleTaskList"

@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun addTaskList(){
 
-        AddNewListActivity(
+         AddNewListActivity(
             taskListsDepositoryManager
         ).show(
             supportFragmentManager, "ADD_NEW_LIST_FRAGMENT"

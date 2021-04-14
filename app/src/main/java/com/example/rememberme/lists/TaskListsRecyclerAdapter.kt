@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +26,21 @@ class TaskListsRecyclerAdapter(private var taskLists:List<TaskList>, private var
             binding.listCard.setOnClickListener {
                 onTaskListClicked(taskList, position)
             }
+
+            binding.imageFrown.visibility = VISIBLE
+
+            binding.imageSmile.visibility = INVISIBLE
+
+
+            /*var complete = DepositoryManager.instance.getAllCheckedTasks()
+
+            if ((complete) != 0){
+                println("$complete = ${taskList.tasks.count()} and is loaded")
+
+                binding.imageFrown.visibility = INVISIBLE
+
+                binding.imageSmile.visibility = VISIBLE
+            }*/
 
             binding.deleteListButton.setOnClickListener {
                 DepositoryManager.instance.removeTaskList(taskList, position)
