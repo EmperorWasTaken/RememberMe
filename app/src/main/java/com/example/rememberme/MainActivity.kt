@@ -67,6 +67,7 @@ class MainActivity : AppCompatActivity() {
             }
             builder.setNegativeButton("No"){dialogInterface, which ->
                 Toast.makeText(applicationContext, "Staying logged in", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(applicationContext, MainActivity::class.java))
                 finish()
             }
             val alertDialog: AlertDialog = builder.create()
